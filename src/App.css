@@ -22,7 +22,9 @@
 
 .contact-page {
   width: 100%;
-  min-height: 100vh;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
   overflow-x: hidden;
   background: var(--page-bg);
   color: var(--text);
