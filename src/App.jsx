@@ -472,7 +472,7 @@ function App() {
           <div className="page-width hero-inner">
             <div className="hero-content">
               <div className="hero-copy">
-                <span className="eyebrow">Contact</span>
+                <span className="eyebrow">Contact Us</span>
 
                 <h1 aria-label="Get in Touch">
                   <img
