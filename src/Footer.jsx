@@ -8,16 +8,16 @@ import "./Footer.css";
   Every internal footer link below is built from
   this base URL.
 */
-const SITE_URL =
+export const SITE_URL =
   "https://www.greenwichskatingclub.com";
 
 const MEMBER_LOGIN_URL =
   "https://www.greenwichskatingclub.org/login";
 
-const ADMISSIONS_EMAIL =
+export const ADMISSIONS_EMAIL =
   "gscadmissions@greenwichskatingclub.org";
 
-const ADMISSIONS_PHONE = "(203) 622-9583";
+export const ADMISSIONS_PHONE = "(203) 622-9583";
 
 const exploreGroups = [
   {
@@ -200,7 +200,7 @@ function FooterLogo() {
       <img
         src={`${
           import.meta.env.BASE_URL
-        }gsc-alt-logo.png`}
+        }gsc-logo.png`}
         alt="Greenwich Skating Club"
       />
     </a>
@@ -338,7 +338,7 @@ function ConnectPanel() {
             <PinIcon />
 
             <span>
-              Cardinal Road · Greenwich, Connecticut
+              15 Cardinal Road · Greenwich, CT 06830
             </span>
           </a>
 

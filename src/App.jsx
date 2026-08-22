@@ -1,45 +1,9 @@
 import "./App.css";
-import Footer from "./Footer.jsx";
-
-const contacts = [
-  {
-    category: "Hockey",
-    description: "Questions about GSC hockey programs.",
-    name: "Ian Tarrant",
-    email: "itarrant@greenwichskatingclub.org",
-  },
-  {
-    category: "Figure Skating",
-    description: "Questions about figure skating programs.",
-    name: "Deb Cunningham",
-    email: "figureskating@greenwichskatingclub.org",
-  },
-  {
-    category: "Crossbar Expert",
-    description: "Help with your Crossbar account.",
-    name: "Casey Fulton",
-    email: "cfulton@greenwichskatingclub.org",
-  },
-  {
-    category: "Admissions",
-    description: "Questions about club admissions and membership.",
-    name: null,
-    email: "gscadmissions@greenwichskatingclub.org",
-  },
-];
-
-const generalContacts = [
-  {
-    name: "Lorin Pratley",
-    title: null,
-    email: "lpratley@greenwichskatingclub.org",
-  },
-  {
-    name: "Francois Magnant",
-    title: "General Manager",
-    email: "fmagnant@greenwichskatingclub.org",
-  },
-];
+import Footer, {
+  ADMISSIONS_EMAIL,
+  ADMISSIONS_PHONE,
+} from "./Footer.jsx";
+import backgroundImage from "./assets/gsc-background.jpg";
 
 function ArrowIcon() {
   return (
@@ -60,6 +24,24 @@ function ArrowIcon() {
   );
 }
 
+function ArrowRightIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 10h12M11 5l5 5-5 5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function EmailLink({ email, label }) {
   return (
     <a
@@ -73,28 +55,16 @@ function EmailLink({ email, label }) {
   );
 }
 
-function ContactCard({ category, description, name, email }) {
-  return (
-    <article className="contact-card">
-      <div className="contact-card-top">
-        <span className="contact-category">{category}</span>
-
-        <h2>{description}</h2>
-      </div>
-
-      <div className="contact-card-bottom">
-        {name && <p className="contact-name">{name}</p>}
-
-        <EmailLink email={email} label={name || category} />
-      </div>
-    </article>
-  );
-}
-
 function App() {
   return (
     <>
       <main className="contact-page">
+        <div
+          className="page-background"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+
         <header className="hero">
           <div className="hero-accent" aria-hidden="true" />
 
@@ -103,106 +73,107 @@ function App() {
               <div className="hero-copy">
                 <span className="eyebrow">Contact Us</span>
 
-                <h1 aria-label="Get in Touch">
-                  <img
-                    src={`${import.meta.env.BASE_URL}gsc-logo.png`}
-                    alt=""
-                    aria-hidden="true"
-                    className="hero-g-mark"
-                    onError={(event) => {
-                      event.currentTarget.style.display = "none";
-                    }}
-                  />
-                  et in Touch
-                </h1>
+                <h1>Get in Touch</h1>
 
                 <p>
-                  Find the right contact for questions about club
-                  programs, admissions, Crossbar, and general club
-                  information.
+                  Reach Greenwich Skating Club for membership,
+                  admissions, or any general questions about the
+                  club.
                 </p>
               </div>
             </div>
-
-            <aside className="location-card">
-              <span className="location-label">Club Location</span>
-
-              <p className="location-name">
-                Greenwich Skating Club
-              </p>
-
-              <address>
-                15 Cardinal Road
-                <br />
-                Greenwich, CT 06830
-              </address>
-
-              <p className="location-phone">
-                Phone: (203) 622-9583
-              </p>
-            </aside>
           </div>
         </header>
 
         <section className="directory">
           <div className="page-width">
-            <div className="section-heading">
-              <div>
-                <span className="eyebrow eyebrow-dark">
-                  Contact Directory
-                </span>
+            <div className="connect-recap">
+              <span className="eyebrow eyebrow-dark">Connect</span>
 
-                <h2>Who can we help you reach?</h2>
+              <h2>Questions about joining or visiting?</h2>
+
+              <p>
+                Reach Greenwich Skating Club directly for
+                admissions, membership, or general questions
+                about the club.
+              </p>
+
+              <div className="connect-recap__details">
+                <div>
+                  <span className="connect-recap__label">
+                    Address
+                  </span>
+
+                  <p>15 Cardinal Road, Greenwich, CT 06830</p>
+                </div>
+
+                <div>
+                  <span className="connect-recap__label">
+                    Email
+                  </span>
+
+                  <EmailLink
+                    email={ADMISSIONS_EMAIL}
+                    label="Greenwich Skating Club"
+                  />
+                </div>
+
+                <div>
+                  <span className="connect-recap__label">
+                    Phone
+                  </span>
+
+                  <p>{ADMISSIONS_PHONE}</p>
+                </div>
               </div>
             </div>
 
-            <div className="contact-grid">
-              {contacts.map((contact) => (
-                <ContactCard
-                  key={contact.category}
-                  category={contact.category}
-                  description={contact.description}
-                  name={contact.name}
-                  email={contact.email}
+            <section className="membership-section">
+              <div className="membership-eyebrow">
+                <span
+                  className="membership-eyebrow__dash"
+                  aria-hidden="true"
                 />
-              ))}
-            </div>
-
-            <section className="general-section">
-              <div className="general-intro">
-                <span className="eyebrow">General Inquiries</span>
-
-                <h2>All other questions</h2>
-
-                <p>
-                  For anything that doesn't fall into one of the
-                  categories above, contact Lorin or Francois.
-                </p>
+                Membership
+                <span
+                  className="membership-eyebrow__dash"
+                  aria-hidden="true"
+                />
               </div>
 
-              <div className="general-contacts">
-                {generalContacts.map((contact) => (
-                  <div
-                    className="general-person"
-                    key={contact.email}
-                  >
-                    <div>
-                      <h3>{contact.name}</h3>
+              <h2>Interested in Joining GSC?</h2>
 
-                      {contact.title && (
-                        <p className="general-title">
-                          {contact.title}
-                        </p>
-                      )}
-                    </div>
+              <span
+                className="membership-divider"
+                aria-hidden="true"
+              />
 
-                    <EmailLink
-                      email={contact.email}
-                      label={contact.name}
-                    />
-                  </div>
-                ))}
-              </div>
+              <p>
+                Greenwich Skating Club is a private, member-based
+                club. Prospective members can learn more about the
+                application process, membership requirements, and
+                the steps involved in joining.
+              </p>
+
+              <p className="membership-email-line">
+                Interested in joining? Email{" "}
+                <a
+                  className="membership-email"
+                  href={`mailto:${ADMISSIONS_EMAIL}`}
+                >
+                  {ADMISSIONS_EMAIL}
+                </a>
+                .
+              </p>
+
+              <a
+                className="membership-cta"
+                href="https://wingsarenact.wixstudio.com/gscnewsite/admissions"
+                target="_top"
+              >
+                Admissions Process
+                <ArrowRightIcon />
+              </a>
             </section>
           </div>
         </section>

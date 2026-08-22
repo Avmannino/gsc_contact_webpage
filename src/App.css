@@ -23,6 +23,8 @@
 ---------------------------------- */
 
 .contact-page {
+  position: relative;
+
   width: 100%;
   min-width: 0;
   min-height: 0;
@@ -30,6 +32,17 @@
   overflow-x: hidden;
   background: var(--page-bg);
   color: var(--text);
+}
+
+.page-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background: center / cover no-repeat;
+  opacity: 0.25;
+
+  pointer-events: none;
 }
 
 .page-width {
@@ -47,6 +60,8 @@
 
 .hero {
   position: relative;
+  z-index: 1;
+
   overflow: hidden;
 
   background:
@@ -90,13 +105,8 @@
 .hero-inner {
   min-height: 330px;
 
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1.5fr)
-    minmax(245px, 0.5fr);
-
-  align-items: end;
-  gap: clamp(50px, 8vw, 100px);
+  display: flex;
+  align-items: flex-end;
 
   padding-top: 42px;
   padding-bottom: 54px;
@@ -146,22 +156,6 @@
   color: var(--white);
 }
 
-.hero-g-mark {
-  position: relative;
-  top: -0.086em;
-
-  display: inline-block;
-
-  height: 0.87em;
-  width: auto;
-
-  margin-right: 0.03em;
-
-  vertical-align: -0.1em;
-
-  object-fit: contain;
-}
-
 .hero-copy p {
   max-width: 650px;
 
@@ -175,88 +169,31 @@
 }
 
 /* ---------------------------------
-   LOCATION
----------------------------------- */
-
-.location-card {
-  padding-left: clamp(24px, 3vw, 38px);
-
-  border-left: 1px solid var(--border-light);
-}
-
-.location-label {
-  display: block;
-
-  margin-bottom: 17px;
-
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-
-  color: var(--red);
-}
-
-.location-name {
-  margin: 0 0 8px;
-
-  font-size: 1rem;
-  font-weight: 650;
-  line-height: 1.4;
-
-  color: var(--white);
-}
-
-.location-card address {
-  margin: 0;
-
-  font-size: 0.95rem;
-  font-style: normal;
-  line-height: 1.7;
-
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.location-phone {
-  margin: 12px 0 0;
-
-  font-size: 0.95rem;
-  line-height: 1.7;
-
-  color: rgba(255, 255, 255, 0.68);
-}
-
-/* ---------------------------------
    DIRECTORY
 ---------------------------------- */
 
 .directory {
+  position: relative;
+  z-index: 1;
+
   padding:
     clamp(65px, 8vw, 100px)
     0
     clamp(75px, 8vw, 110px);
 }
 
-.section-heading {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(260px, 0.45fr);
-
-  gap: clamp(40px, 8vw, 100px);
-  align-items: end;
-
-  margin-bottom: clamp(38px, 5vw, 55px);
-}
-
 .eyebrow-dark {
   color: var(--red);
 }
 
-.section-heading h2 {
+/* ---------------------------------
+   CONNECT RECAP
+---------------------------------- */
+
+.connect-recap h2 {
   margin: 0;
 
-  max-width: 600px;
+  max-width: 640px;
 
   font-family:
     "Oswald",
@@ -264,16 +201,16 @@
     Helvetica,
     sans-serif;
 
-  font-size: clamp(2rem, 3.8vw, 3.15rem);
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 
   color: var(--navy-dark);
 }
 
-.section-heading > p {
-  margin: 0;
+.connect-recap > p {
+  margin: 16px 0 0;
 
   font-size: 0.98rem;
   line-height: 1.7;
@@ -281,68 +218,88 @@
   color: var(--text-muted);
 }
 
-/* ---------------------------------
-   CONTACT GRID
----------------------------------- */
-
-.contact-grid {
+.connect-recap__details {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 3vw, 28px);
+
+  margin-top: clamp(32px, 4vw, 44px);
+  padding-top: clamp(28px, 4vw, 36px);
+
+  border-top: 1px solid var(--border);
 }
 
-.contact-card {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  min-height: 230px;
-
-  padding:
-    clamp(27px, 3vw, 36px);
-
-  overflow: hidden;
-
-  background: var(--white);
-
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--navy);
-
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+.connect-recap__details .email-link span {
+  white-space: nowrap;
 }
 
-.contact-card:hover {
-  transform: translateY(-2px);
-
-  border-color: #cfd5de;
-
-  box-shadow:
-    0 12px 30px rgba(7, 27, 59, 0.07);
-}
-
-.contact-category {
+.connect-recap__label {
   display: block;
 
-  margin-bottom: 17px;
+  margin-bottom: 8px;
 
   font-size: 0.7rem;
-  font-weight: 750;
-  letter-spacing: 0.15em;
-  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 
   color: var(--red);
 }
 
-.contact-card h2 {
-  max-width: 430px;
-
+.connect-recap__details p {
   margin: 0;
+
+  font-size: 0.98rem;
+  font-weight: 550;
+  line-height: 1.5;
+
+  color: var(--text);
+}
+
+/* ---------------------------------
+   MEMBERSHIP
+---------------------------------- */
+
+.membership-section {
+  margin-top: clamp(50px, 6vw, 70px);
+
+  padding: clamp(38px, 5vw, 54px);
+
+  background: var(--navy-dark);
+  border-radius: 20px;
+
+  color: var(--white);
+
+  text-align: center;
+}
+
+.membership-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.membership-eyebrow__dash {
+  width: 22px;
+  height: 2px;
+
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.membership-section h2 {
+  margin: 0 auto;
+
+  max-width: 560px;
 
   font-family:
     "Oswald",
@@ -350,26 +307,79 @@
     Helvetica,
     sans-serif;
 
-  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
   font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -0.018em;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 
-  color: var(--navy-dark);
+  color: var(--white);
 }
 
-.contact-card-bottom {
-  margin-top: 35px;
+.membership-divider {
+  display: block;
+
+  width: 60px;
+  height: 4px;
+  margin: 22px auto;
+
+  background: var(--red);
 }
 
-.contact-name {
-  margin: 0 0 10px;
+.membership-section > p {
+  max-width: 560px;
 
-  font-size: 0.94rem;
-  font-weight: 650;
-  line-height: 1.4;
+  margin: 0 auto 14px;
 
-  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.membership-email {
+  font-weight: 700;
+
+  color: var(--white);
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  transition: color 160ms ease;
+}
+
+.membership-email:hover {
+  color: var(--red);
+}
+
+.membership-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 14px;
+
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: var(--red);
+
+  transition: gap 160ms ease;
+}
+
+.membership-cta:hover {
+  gap: 14px;
+}
+
+.membership-cta svg {
+  width: 24px;
+  height: 24px;
+
+  flex: 0 0 auto;
 }
 
 /* ---------------------------------
@@ -429,165 +439,15 @@
 }
 
 /* ---------------------------------
-   GENERAL INQUIRIES
----------------------------------- */
-
-.general-section {
-  display: grid;
-  grid-template-columns:
-    minmax(260px, 0.7fr)
-    minmax(0, 1.3fr);
-
-  gap: clamp(45px, 8vw, 100px);
-
-  margin-top: clamp(55px, 7vw, 80px);
-
-  padding:
-    clamp(38px, 5vw, 54px);
-
-  background: var(--navy-dark);
-
-  color: var(--white);
-}
-
-.general-intro {
-  max-width: 380px;
-}
-
-.general-intro h2 {
-  margin: 0;
-
-  font-family:
-    "Oswald",
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
-
-  color: var(--white);
-}
-
-.general-intro > p {
-  margin: 18px 0 0;
-
-  font-size: 0.94rem;
-  line-height: 1.7;
-
-  color: rgba(255, 255, 255, 0.64);
-}
-
-.general-contacts {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.17);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.17);
-}
-
-.general-person {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  min-width: 0;
-  min-height: 160px;
-
-  padding: 28px 0;
-}
-
-.general-person + .general-person {
-  border-top: 1px solid rgba(255, 255, 255, 0.17);
-}
-
-.general-person h3 {
-  margin: 0;
-
-  font-family:
-    "Oswald",
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: clamp(1.15rem, 1.7vw, 1.35rem);
-  font-weight: 700;
-  line-height: 1.3;
-
-  color: var(--white);
-}
-
-.general-title {
-  margin: 6px 0 0;
-
-  font-size: 0.8rem;
-  line-height: 1.4;
-
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.general-person .email-link {
-  margin-top: 26px;
-
-  border-color: rgba(255, 255, 255, 0.28);
-
-  color: var(--white);
-}
-
-.general-person .email-link span {
-  white-space: nowrap;
-}
-
-.general-person .email-link:hover {
-  border-color: var(--red);
-  color: var(--red);
-}
-
-/* ---------------------------------
    TABLET
 ---------------------------------- */
 
 @media (max-width: 900px) {
   .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 38px;
-
     min-height: 0;
 
     padding-top: 36px;
     padding-bottom: 48px;
-  }
-
-  .location-card {
-    max-width: 420px;
-
-    padding:
-      24px
-      0
-      0;
-
-    border-left: 0;
-    border-top: 1px solid var(--border-light);
-  }
-
-  .section-heading {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .section-heading > p {
-    max-width: 550px;
-  }
-
-  .general-section {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .general-intro {
-    max-width: 560px;
   }
 }
 
@@ -619,18 +479,17 @@
     margin-inline: auto;
   }
 
-  .location-card {
-    text-align: center;
-  }
-
   .directory {
     padding-top: 55px;
     padding-bottom: 70px;
   }
 
-  .section-heading > div {
+  .connect-recap {
     text-align: center;
+  }
 
+  .connect-recap h2,
+  .connect-recap > p {
     margin-inline: auto;
   }
 
@@ -638,47 +497,12 @@
     font-size: 0.82rem;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .contact-card {
-    min-height: 205px;
-
-    align-items: center;
-
-    padding: 26px 23px;
-
-    text-align: center;
-  }
-
-  .contact-card-bottom {
-    margin-top: 30px;
-  }
-
-  .general-section {
+  .membership-section {
     margin-top: 48px;
 
     padding:
       32px
       23px;
-
-    text-align: center;
-  }
-
-  .general-intro {
-    margin-inline: auto;
-  }
-
-  .general-person {
-    min-height: 135px;
-
-    align-items: center;
-
-    padding:
-      24px
-      0;
   }
 }
 
@@ -691,13 +515,7 @@
     --page-padding: 16px;
   }
 
-  .contact-card {
-    padding:
-      24px
-      20px;
-  }
-
-  .general-section {
+  .membership-section {
     padding:
       29px
       20px;
