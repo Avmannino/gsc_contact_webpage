@@ -76,9 +76,8 @@ function App() {
                 <h1>Get in Touch</h1>
 
                 <p>
-                  Reach Greenwich Skating Club for membership,
-                  admissions, or any general questions about the
-                  club.
+                  Contact the Skating Club for membership,
+                  admissions, or any general questions.
                 </p>
               </div>
             </div>
@@ -90,12 +89,10 @@ function App() {
             <div className="connect-recap">
               <span className="eyebrow eyebrow-dark">Connect</span>
 
-              <h2>Questions about joining or visiting?</h2>
+              <h2>Questions? </h2>
 
               <p>
-                Reach Greenwich Skating Club directly for
-                admissions, membership, or general questions
-                about the club.
+                 Start here
               </p>
 
               <div className="connect-recap__details">
@@ -156,14 +153,8 @@ function App() {
               </p>
 
               <p className="membership-email-line">
-                Interested in joining? Email{" "}
-                <a
-                  className="membership-email"
-                  href={`mailto:${ADMISSIONS_EMAIL}`}
-                >
-                  {ADMISSIONS_EMAIL}
-                </a>
-                .
+                Interested in joining? Visit our Admissions page below to
+                apply:
               </p>
 
               <a

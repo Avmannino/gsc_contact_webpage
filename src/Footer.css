@@ -398,10 +398,6 @@
 
   margin-top: 27px;
   padding-top: 40px;
-
-  border-top:
-    1px solid
-    var(--footer-line);
 }
 
 .footer-connect__info {
@@ -815,6 +811,10 @@
     text-align: center;
   }
 
+  .footer-menu__group-title > span:first-child {
+    transform: translateX(5px);
+  }
+
   .footer-menu__group li a {
     justify-content: center;
 
@@ -822,6 +822,8 @@
     padding: 7px 14px;
 
     text-align: center;
+
+    transform: translateX(5px);
   }
 
   .footer-connect {

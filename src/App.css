@@ -337,6 +337,11 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
+.membership-email-line {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .membership-email {
   font-weight: 700;
 
@@ -503,6 +508,10 @@
     padding:
       32px
       23px;
+  }
+
+  .membership-email-line {
+    font-size: 0.85rem;
   }
 }
 

@@ -9,7 +9,7 @@ import "./Footer.css";
   this base URL.
 */
 export const SITE_URL =
-  "https://www.greenwichskatingclub.com";
+  "https://greenwichskatingclub.com";
 
 const MEMBER_LOGIN_URL =
   "https://www.greenwichskatingclub.org/login";
