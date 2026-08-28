@@ -14,11 +14,6 @@ export const SITE_URL =
 const MEMBER_LOGIN_URL =
   "https://www.greenwichskatingclub.org/login";
 
-export const ADMISSIONS_EMAIL =
-  "gscadmissions@greenwichskatingclub.org";
-
-export const ADMISSIONS_PHONE = "(203) 622-9583";
-
 const exploreGroups = [
   {
     title: "About",
@@ -105,25 +100,6 @@ function ArrowIcon() {
   );
 }
 
-function EmailIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <rect
-        x="3"
-        y="5"
-        width="18"
-        height="14"
-        rx="2"
-      />
-
-      <path d="m4 7 8 6 8-6" />
-    </svg>
-  );
-}
-
 function PinIcon() {
   return (
     <svg
@@ -144,17 +120,6 @@ function PinIcon() {
         cy="10"
         r="2.5"
       />
-    </svg>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
 }
@@ -338,25 +303,7 @@ function ConnectPanel() {
             <PinIcon />
 
             <span>
-              15 Cardinal Road · Greenwich, CT 06830
-            </span>
-          </a>
-
-          <a href={`mailto:${ADMISSIONS_EMAIL}`}>
-            <EmailIcon />
-
-            <span>
-              {ADMISSIONS_EMAIL}
-            </span>
-          </a>
-
-          <a
-            href={`tel:+1${ADMISSIONS_PHONE.replace(/\D/g, "")}`}
-          >
-            <PhoneIcon />
-
-            <span>
-              Phone: {ADMISSIONS_PHONE}
+              9 Cardinal Rd · Greenwich, CT 06830
             </span>
           </a>
         </div>
@@ -389,7 +336,7 @@ function ConnectPanel() {
       <div className="footer-map">
         <iframe
           title="Greenwich Skating Club location"
-          src="https://www.google.com/maps?q=Greenwich+Skating+Club,+Cardinal+Road,+Greenwich,+CT&output=embed"
+          src="https://www.google.com/maps?q=9+Cardinal+Rd,+Greenwich,+CT&output=embed"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />

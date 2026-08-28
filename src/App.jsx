@@ -1,28 +1,17 @@
+import { useState } from "react";
 import "./App.css";
-import Footer, {
-  ADMISSIONS_EMAIL,
-  ADMISSIONS_PHONE,
-} from "./Footer.jsx";
+import Footer from "./Footer.jsx";
 import backgroundImage from "./assets/gsc-background.jpg";
 
-function ArrowIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="arrow-icon"
-      aria-hidden="true"
-    >
-      <path
-        d="M5 15L15 5M8 5h7v7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+const CONTACT_EMAIL = "info@greenwichskatingclub.org";
+
+const initialFormState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
 function ArrowRightIcon() {
   return (
@@ -42,16 +31,126 @@ function ArrowRightIcon() {
   );
 }
 
-function EmailLink({ email, label }) {
+function ContactForm() {
+  const [formData, setFormData] = useState(initialFormState);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const { firstName, lastName, email, phone, message } = formData;
+
+    const subject = `Inquiry - ${firstName} ${lastName}`.trim();
+
+    const body = [
+      `Name: ${firstName} ${lastName}`.trim(),
+      `Email: ${email}`,
+      phone && `Phone: ${phone}`,
+      "",
+      "Question:",
+      message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
-    <a
-      className="email-link"
-      href={`mailto:${email}`}
-      aria-label={`Email ${label || email}`}
+    <form
+      className="contact-form"
+      onSubmit={handleSubmit}
     >
-      <span>{email}</span>
-      <ArrowIcon />
-    </a>
+      <h3 className="contact-form__heading">Send a Message</h3>
+
+      <div className="contact-form__row">
+        <div className="contact-form__field">
+          <label htmlFor="firstName">First Name</label>
+
+          <input
+            id="firstName"
+            name="firstName"
+            type="text"
+            autoComplete="given-name"
+            required
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="contact-form__field">
+          <label htmlFor="lastName">Last Name</label>
+
+          <input
+            id="lastName"
+            name="lastName"
+            type="text"
+            autoComplete="family-name"
+            required
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="contact-form__row">
+        <div className="contact-form__field">
+          <label htmlFor="email">Email</label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="contact-form__field">
+          <label htmlFor="phone">Phone</label>
+
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            required
+            value={formData.phone}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="contact-form__field">
+        <label htmlFor="message">Your Question</label>
+
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          required
+          value={formData.message}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="contact-form__submit"
+      >
+        Send Message
+        <ArrowRightIcon />
+      </button>
+    </form>
   );
 }
 
@@ -101,28 +200,11 @@ function App() {
                     Address
                   </span>
 
-                  <p>15 Cardinal Road, Greenwich, CT 06830</p>
-                </div>
-
-                <div>
-                  <span className="connect-recap__label">
-                    Email
-                  </span>
-
-                  <EmailLink
-                    email={ADMISSIONS_EMAIL}
-                    label="Greenwich Skating Club"
-                  />
-                </div>
-
-                <div>
-                  <span className="connect-recap__label">
-                    Phone
-                  </span>
-
-                  <p>{ADMISSIONS_PHONE}</p>
+                  <p>9 Cardinal Rd, Greenwich, CT 06830</p>
                 </div>
               </div>
+
+              <ContactForm />
             </div>
 
             <section className="membership-section">
