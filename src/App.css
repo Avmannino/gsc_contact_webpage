@@ -406,6 +406,10 @@
   color: var(--white);
 }
 
+.membership-content {
+  margin-left: 50px;
+}
+
 .membership-eyebrow {
   display: flex;
   align-items: center;
@@ -545,11 +549,17 @@
     padding-bottom: 40px;
   }
 
+  .hero-copy {
+    text-align: center;
+  }
+
   .hero-copy h1 {
     font-size: clamp(2.7rem, 13vw, 3.6rem);
   }
 
   .hero-copy p {
+    margin-inline: auto;
+
     font-size: 0.85rem;
   }
 
@@ -562,6 +572,17 @@
     grid-template-columns: 1fr;
   }
 
+  .connect-recap .eyebrow,
+  .connect-recap h2,
+  .connect-recap > p,
+  .connect-recap__details {
+    text-align: center;
+  }
+
+  .connect-recap h2 {
+    margin-inline: auto;
+  }
+
   .eyebrow-dark {
     font-size: 0.82rem;
   }
@@ -572,6 +593,26 @@
     padding:
       32px
       23px;
+  }
+
+  .membership-content {
+    margin-left: 0;
+
+    text-align: center;
+  }
+
+  .membership-eyebrow,
+  .membership-cta {
+    justify-content: center;
+  }
+
+  .membership-section h2,
+  .membership-section > p {
+    margin-inline: auto;
+  }
+
+  .membership-divider {
+    margin-inline: auto;
   }
 
   .membership-email-line {

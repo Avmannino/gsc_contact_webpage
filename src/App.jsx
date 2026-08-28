@@ -208,45 +208,47 @@ function App() {
             </div>
 
             <section className="membership-section">
-              <div className="membership-eyebrow">
+              <div className="membership-content">
+                <div className="membership-eyebrow">
+                  <span
+                    className="membership-eyebrow__dash"
+                    aria-hidden="true"
+                  />
+                  Membership
+                  <span
+                    className="membership-eyebrow__dash"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <h2>Interested in Joining GSC?</h2>
+
                 <span
-                  className="membership-eyebrow__dash"
+                  className="membership-divider"
                   aria-hidden="true"
                 />
-                Membership
-                <span
-                  className="membership-eyebrow__dash"
-                  aria-hidden="true"
-                />
+
+                <p>
+                  Greenwich Skating Club is a private, member-based
+                  club. Prospective members can learn more about the
+                  application process, membership requirements, and
+                  the steps involved in joining.
+                </p>
+
+                <p className="membership-email-line">
+                  Interested in joining? Visit our Admissions page below to
+                  apply:
+                </p>
+
+                <a
+                  className="membership-cta"
+                  href="https://wingsarenact.wixstudio.com/gscnewsite/admissions"
+                  target="_top"
+                >
+                  Admissions Process
+                  <ArrowRightIcon />
+                </a>
               </div>
-
-              <h2>Interested in Joining GSC?</h2>
-
-              <span
-                className="membership-divider"
-                aria-hidden="true"
-              />
-
-              <p>
-                Greenwich Skating Club is a private, member-based
-                club. Prospective members can learn more about the
-                application process, membership requirements, and
-                the steps involved in joining.
-              </p>
-
-              <p className="membership-email-line">
-                Interested in joining? Visit our Admissions page below to
-                apply:
-              </p>
-
-              <a
-                className="membership-cta"
-                href="https://wingsarenact.wixstudio.com/gscnewsite/admissions"
-                target="_top"
-              >
-                Admissions Process
-                <ArrowRightIcon />
-              </a>
             </section>
           </div>
         </section>
