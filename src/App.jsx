@@ -5,6 +5,10 @@ import backgroundImage from "./assets/gsc-background.jpg";
 
 const CONTACT_EMAIL = "info@greenwichskatingclub.org";
 
+// Web3Forms delivers to the email the key was created with (CONTACT_EMAIL).
+// TODO: paste the access key created for info@greenwichskatingclub.org.
+const WEB3FORMS_ACCESS_KEY = "";
+
 const initialFormState = {
   firstName: "",
   lastName: "",
@@ -33,6 +37,7 @@ function ArrowRightIcon() {
 
 function ContactForm() {
   const [formData, setFormData] = useState(initialFormState);
+  const [status, setStatus] = useState("idle");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,27 +45,46 @@ function ContactForm() {
     setFormData((current) => ({ ...current, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const { firstName, lastName, email, phone, message } = formData;
 
-    const subject = `Inquiry - ${firstName} ${lastName}`.trim();
+    const name = `${firstName} ${lastName}`.trim();
+    const botcheck = event.currentTarget.elements.botcheck.checked;
 
-    const body = [
-      `Name: ${firstName} ${lastName}`.trim(),
-      `Email: ${email}`,
-      phone && `Phone: ${phone}`,
-      "",
-      "Question:",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n");
+    setStatus("sending");
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Inquiry - ${name}`,
+          from_name: name,
+          name,
+          email,
+          phone,
+          message,
+          botcheck,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.message);
+      }
+
+      setFormData(initialFormState);
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -68,7 +92,17 @@ function ContactForm() {
       className="contact-form"
       onSubmit={handleSubmit}
     >
-      <h3 className="contact-form__heading">Send a Message</h3>
+      <div className="contact-form__header">
+        <h3 className="contact-form__heading">Send Us a Message</h3>
+
+        <img
+          className="contact-form__logo"
+          src={`${
+            import.meta.env.BASE_URL
+          }gsc-logo.png`}
+          alt=""
+        />
+      </div>
 
       <div className="contact-form__row">
         <div className="contact-form__field">
@@ -131,7 +165,7 @@ function ContactForm() {
       </div>
 
       <div className="contact-form__field">
-        <label htmlFor="message">Your Question</label>
+        <label htmlFor="message">Your Message</label>
 
         <textarea
           id="message"
@@ -143,13 +177,43 @@ function ContactForm() {
         />
       </div>
 
+      <input
+        className="contact-form__honeypot"
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
       <button
         type="submit"
         className="contact-form__submit"
+        disabled={status === "sending"}
       >
-        Send Message
+        {status === "sending" ? "Sending…" : "Send Message"}
         <ArrowRightIcon />
       </button>
+
+      {status === "success" && (
+        <p
+          className="contact-form__status"
+          role="status"
+        >
+          Thanks! Your message has been sent. We&rsquo;ll be in touch soon.
+        </p>
+      )}
+
+      {status === "error" && (
+        <p
+          className="contact-form__status"
+          role="alert"
+        >
+          Sorry, your message couldn&rsquo;t be sent. Please try again or
+          email us at{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        </p>
+      )}
     </form>
   );
 }
@@ -186,23 +250,7 @@ function App() {
         <section className="directory">
           <div className="page-width">
             <div className="connect-recap">
-              <span className="eyebrow eyebrow-dark">Connect</span>
-
               <h2>Questions? </h2>
-
-              <p>
-                 Start here
-              </p>
-
-              <div className="connect-recap__details">
-                <div>
-                  <span className="connect-recap__label">
-                    Address
-                  </span>
-
-                  <p>9 Cardinal Rd, Greenwich, CT 06830</p>
-                </div>
-              </div>
 
               <ContactForm />
             </div>

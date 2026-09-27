@@ -221,7 +221,7 @@
   grid-template-columns: 1fr;
   gap: clamp(20px, 3vw, 28px);
 
-  margin-top: clamp(32px, 4vw, 44px);
+  margin-top: clamp(16px, 2vw, 22px);
   padding-top: clamp(28px, 4vw, 36px);
 
   border-top: 1px solid var(--border);
@@ -258,9 +258,7 @@
   display: grid;
   gap: 18px;
 
-  max-width: 960px;
-
-  margin-top: clamp(32px, 4vw, 44px);
+  margin-top: clamp(16px, 2vw, 22px);
   padding: clamp(28px, 4vw, 40px);
 
   background: var(--navy);
@@ -269,6 +267,20 @@
   color: var(--white);
 
   text-align: left;
+}
+
+.contact-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.contact-form__logo {
+  flex: 0 0 auto;
+
+  width: auto;
+  height: clamp(40px, 5vw, 56px);
 }
 
 .contact-form__heading {
@@ -374,12 +386,18 @@
     transform 160ms ease;
 }
 
-.contact-form__submit:hover {
+.contact-form__submit:hover:not(:disabled) {
   transform: translateY(-2px);
 
   background: transparent;
 
   color: var(--red);
+}
+
+.contact-form__submit:disabled {
+  opacity: 0.7;
+
+  cursor: wait;
 }
 
 .contact-form__submit svg {
@@ -389,13 +407,33 @@
   flex: 0 0 auto;
 }
 
+.contact-form__honeypot {
+  display: none;
+}
+
+.contact-form__status {
+  margin: 0;
+
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-form__status a {
+  font-weight: 700;
+
+  color: var(--white);
+
+  text-underline-offset: 3px;
+}
+
 /* ---------------------------------
    MEMBERSHIP
 ---------------------------------- */
 
 .membership-section {
-  max-width: 960px;
-
   margin-top: clamp(50px, 6vw, 70px);
 
   padding: clamp(38px, 5vw, 54px);
@@ -407,12 +445,13 @@
 }
 
 .membership-content {
-  margin-left: 50px;
+  text-align: center;
 }
 
 .membership-eyebrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 
   margin-bottom: 18px;
@@ -433,7 +472,7 @@
 }
 
 .membership-section h2 {
-  margin: 0;
+  margin: 0 auto;
 
   max-width: 560px;
 
@@ -457,15 +496,15 @@
 
   width: 60px;
   height: 4px;
-  margin: 22px 0;
+  margin: 22px auto;
 
   background: var(--red);
 }
 
-.membership-section > p {
-  max-width: 560px;
+.membership-content > p {
+  max-width: 760px;
 
-  margin: 0 0 14px;
+  margin: 0 auto 14px;
 
   font-size: 0.98rem;
   line-height: 1.7;
@@ -593,26 +632,6 @@
     padding:
       32px
       23px;
-  }
-
-  .membership-content {
-    margin-left: 0;
-
-    text-align: center;
-  }
-
-  .membership-eyebrow,
-  .membership-cta {
-    justify-content: center;
-  }
-
-  .membership-section h2,
-  .membership-section > p {
-    margin-inline: auto;
-  }
-
-  .membership-divider {
-    margin-inline: auto;
   }
 
   .membership-email-line {
