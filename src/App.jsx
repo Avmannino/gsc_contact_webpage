@@ -290,7 +290,7 @@ function App() {
 
                 <a
                   className="membership-cta"
-                  href="https://wingsarenact.wixstudio.com/gscnewsite/admissions"
+                  href="https://www.greenwichskatingclub.com/admissions"
                   target="_top"
                 >
                   Admissions Process
